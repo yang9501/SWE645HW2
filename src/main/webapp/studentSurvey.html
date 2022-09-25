@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!-- studentSurvey.html is a static form for collecting student feedback -->
+<html>
+<head>
+<title>Justin's Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div id="header" class="w3-bar w3-wide w3-padding w3-card">
+    <a href="http://swe645-jyang52.s3-website-us-east-1.amazonaws.com/index.html" class="w3-bar-item w3-button"><b>jyang52</b> HW1</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="http://swe645-jyang52.s3-website-us-east-1.amazonaws.com/index.html" class="w3-bar-item w3-button">Home</a>
+      <a href="studentSurvey.html" class="w3-bar-item w3-button">Student Survey</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+</header>
+
+<!-- Page content -->
+<br>
+<br>
+<div class="w3-content w3-padding" style="max-width:1564px">
+  <div class="w3-container w3-padding-32" id="projects">
+    <h1 class="w3-padding-16">Student Survey</h1>
+  </div>
+
+  <div class="w3-container w3-padding-32">
+  <form autocomplete="on">
+  <table>
+    <tr>
+      <td>
+        <label>First Name*:</label>
+      </td>
+      <td>
+        <input type="text" placeholder="John" name="firstName" required autofocus/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Last Name*:</label>
+      </td>
+      <td>
+        <input type="text" placeholder="Doe" name="lastName" required autofocus/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Street Address*:</label>
+      </td>
+      <td>
+        <input type="text" placeholder="1234 Oak Mill Rd." name="streetAddress" required/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>City*:</label>
+      </td>
+      <td>
+        <input type="text" placeholder="Anytown" name="city" required/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>State*:</label>
+      </td>
+      <td>
+        <input type="text" placeholder="VA" name="state" required/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Zip Code*:</label>
+      </td>
+      <td>
+        <input type="text" placeholder="11111" name="zipCode" required/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Telephone Number*:</label>
+      </td>
+      <td>
+        <input type="tel" placeholder="(###) ###-####" pattern="\(\d{3}\) +|d{3}-\d{4}" name="telephoneNumber" required/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Email Address*:</label>
+      </td>
+      <td>
+        <input type="email" placeholder="name@domain.com" name="email" required/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Date of Survey*:</label>
+      </td>
+      <td>
+        <input type="date" placeholder="yyyy-mm-dd" name="dateOfSurvey" required/>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>
+        Things you liked:
+      </td>
+      <td>
+        <label><input type="checkbox" /> Students</label>
+        <label><input type="checkbox" /> Location</label>
+        <label><input type="checkbox" /> Campus</label>
+        <label><input type="checkbox" /> Atmosphere</label>
+        <label><input type="checkbox" /> Dorm Rooms</label>
+        <label><input type="checkbox" /> Sports</label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        How did you become interested in the University?
+      </td>
+      <td>
+        <label><input type="radio" name="interest"/> Friends</label>
+        <label><input type="radio" name="interest"/> Television</label>
+        <label><input type="radio" name="interest"/> Internet</label>
+        <label><input type="radio" name="interest"/> Other</label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Would you recommend this school to other prospective students?
+      </td>
+      <td>
+        <select>
+          <option selected="selected">Very Likely
+          <option>Likely
+          <option>Unlikely
+      </td>
+    </tr>
+  </table>
+  <p>Raffle<i> (Input at least 10 comma separated numbers ranging from 1-100)</i>: </p>
+  <textarea rows="4" cols="20"></textarea>
+  <br>
+  <p>Additional Comments:</p>
+  <textarea rows="4" cols="20"></textarea>
+  <br>
+  <input type="submit" value="Submit" />
+  <input type="reset" value="Clear" />
+  </form>
+  </div>
+
+</div>
+<!-- End page content -->
+
+<!-- Footer -->
+<footer>
+  <a class="logo" href="https://www.gmu.edu">
+    <img class="logo" src="resources/images/gmuLogo.png">
+  </a>
+</footer>
+
+</body>
+</html>

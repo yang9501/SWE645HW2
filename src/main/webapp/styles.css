@@ -1,0 +1,52 @@
+h1 {
+  color: #006633;
+  border: 5px solid #006633;
+  box-shadow: 5px 10px #888888;
+}
+
+body {
+  background-color: WhiteSmoke;
+}
+
+#header {
+  background-color: #006633;
+  color: #FFCC33;
+}
+
+/* table elements */
+#classReqs td {
+  border: 1px solid black;
+}
+
+#classReqs tr:nth-child(even){background-color: #f2f2f2;}
+
+th, td {
+  padding: 7px;
+}
+
+#classReqs th {
+  color: #FFCC33;
+  background-color: #006633;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+}
+
+
+/* footer elements*/
+footer {
+  text-align: right;
+  padding: 15px;
+  background-color: #006633;
+  color: #FFCC33;
+}
+
+footer a {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.logo img {
+  vertical-align: middle;
+  width: 110px;
+}
