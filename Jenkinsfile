@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "yang9501/swe645hw2"
+    registryCredential='dockerhub'
+  }
   agent any
   stages {
     stage("Building the Student Survey Image"){
@@ -10,8 +14,14 @@ pipeline {
           sh 'rm -rf *.war'
           sh 'jar -cvf SWE645HW2.war *'
           sh 'echo ${BUILD_TIMESTAMP}'
-          sh 'docker login -u yang9501 -p swe645hw2'
-          def customImage = docker.build("yang9501/swe645hw2")
+          customImage = docker.build(registry + ":$BUILD_NUMBER")
+        }
+      }
+    }
+    stage("Pushing Image to Dockerhub"){
+      steps{
+        docker.withRegistry('',registryCredential){
+            customImage.push()
         }
       }
     }
