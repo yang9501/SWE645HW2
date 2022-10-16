@@ -15,15 +15,15 @@ pipeline {
           sh 'rm -rf *.war'
           sh 'jar -cvf SWE645HW2.war *'
           sh 'echo ${BUILD_TIMESTAMP}'
-          sh 'sudo docker login -u yang9501 -p ${DOCKERHUB_PASS}'
-          sh 'sudo docker build -t yang9501/swe645hw2:latest .'
+          sh 'docker login -u yang9501 -p ${DOCKERHUB_PASS}'
+          sh ' docker build -t yang9501/swe645hw2:latest .'
         }
       }
     }
     stage("Pushing Image to Dockerhub"){
       steps{
         script {
-          sh 'sudo docker push yang9501/swe645hw2:latest'
+          sh 'docker push yang9501/swe645hw2:latest'
         }
       }
     }
