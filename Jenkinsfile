@@ -20,8 +20,10 @@ pipeline {
     }
     stage("Pushing Image to Dockerhub"){
       steps{
-        docker.withRegistry('',registryCredential){
-            customImage.push()
+        script {
+          docker.withRegistry('',registryCredential){
+              customImage.push()
+          }
         }
       }
     }
