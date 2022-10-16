@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+  environment {
+    registry = "yang9501/swe645hw2"
+    registryCredential='dockerhub'
+    DOCKERHUB_PASS=credentials('swe645hw2')
+  }
+  
+  stages {
+    stage("Building the Student Survey Image"){
+      steps{
+        script {
+          checkout scm
+          sh 'rm -rf *.war'
+          sh 'jar -cvf SWE645HW2.war -C WebContent/ .'
+          sh 'echo ${BUILD_TIMESTAMP}'
+          sh "docker login -u yang9501 -p ${DOCKERHUB_PASS}"
+          def customImage=docker.build("yang9501/SWE645HW2:${BUILD_TIMESTAMP}")
+          git 'https://github.com/yang9501/SWE645HW2.git'
+          
+        }
+      }
+    }
+    stage("Pushing Image to Dockerhub"){
+      steps{
+        script {
+          sh 'docker push yang9501/swe645hw2:${BUILD_TIMESTAMP}'
+        }
+      }
+    }
+  }
+}
