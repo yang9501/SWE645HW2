@@ -2,6 +2,7 @@ pipeline {
   environment {
     registry = "yang9501/swe645hw2"
     registryCredential='dockerhub'
+    DOCKERHUB_CREDENTIALS=credentials('dockerhub')
   }
   agent any
   stages {
@@ -14,16 +15,15 @@ pipeline {
           sh 'rm -rf *.war'
           sh 'jar -cvf SWE645HW2.war *'
           sh 'echo ${BUILD_TIMESTAMP}'
-          customImage = docker.build(registry + ":$BUILD_NUMBER")
+          sh 'docker build -t yang9501/swe645hw2:latest .'
         }
       }
     }
     stage("Pushing Image to Dockerhub"){
       steps{
         script {
-          docker.withRegistry('',registryCredential){
-              customImage.push()
-          }
+          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+          sh 'docker push yang9501/swe645hw2:latest'
         }
       }
     }
