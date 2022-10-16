@@ -15,6 +15,7 @@ pipeline {
           sh 'rm -rf *.war'
           sh 'jar -cvf SWE645HW2.war *'
           sh 'echo ${BUILD_TIMESTAMP}'
+          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
           sh 'docker build -t yang9501/swe645hw2:latest .'
         }
       }
@@ -22,7 +23,6 @@ pipeline {
     stage("Pushing Image to Dockerhub"){
       steps{
         script {
-          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
           sh 'docker push yang9501/swe645hw2:latest'
         }
       }
