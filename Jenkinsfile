@@ -15,7 +15,7 @@ pipeline {
           sh 'rm -rf *.war'
           sh 'jar -cvf SWE645HW2.war *'
           sh 'echo ${BUILD_TIMESTAMP}'
-          sh 'sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p ${DOCKERHUB_PASS}'
+          sh 'sudo docker login -u yang9501 -p ${DOCKERHUB_PASS}'
           sh 'sudo docker build -t yang9501/swe645hw2:latest .'
         }
       }
