@@ -1,9 +1,4 @@
 pipeline {
-  environment {
-    registry = "yang9501/swe645hw2"
-    registryCredential='dockerhub'
-    DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-  }
   agent any
   stages {
     stage("Building the Student Survey Image"){
