@@ -28,5 +28,12 @@ pipeline {
         }
       }
     }
+    stage("Deploying on cluster through Rancher"){
+      steps{
+        script {
+          sh 'kubeconfig version'
+        }
+      }
+    }
   }
 }
