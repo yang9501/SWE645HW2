@@ -14,6 +14,7 @@ pipeline {
           sh 'ls'
           sh 'rm -rf *.war'
           sh 'jar -cvf SWE645HW2.war *'
+          sh 'ls'
           sh 'echo ${BUILD_TIMESTAMP}'
           sh 'docker login -u yang9501 -p ${DOCKERHUB_PASS}'
           sh 'docker build -t yang9501/swe645hw2:latest .'
