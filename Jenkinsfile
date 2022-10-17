@@ -8,7 +8,7 @@ pipeline {
           sh 'pwd'
           sh 'ls'
           sh 'rm -rf *.war'
-          sh 'jar -cvf SWE645HW2.war -C webapp/ .'
+          sh 'jar -cvf SWE645HW2.war -C src/main/webapp/ .'
           sh 'ls'
           sh 'echo ${BUILD_TIMESTAMP}'
           sh 'docker login -u yang9501 -p ${DOCKERHUB_PASS}'
