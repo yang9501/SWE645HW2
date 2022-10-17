@@ -31,7 +31,7 @@ pipeline {
     stage("Deploying on cluster through Rancher"){
       steps{
         script {
-          sh 'kubectl --kubeconfig /home/ubuntu/.kube/config version'
+          sh 'kubectl --kubeconfig /var/lib/jenkins/.kube/config version'
         }
       }
     }
