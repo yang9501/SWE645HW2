@@ -4,7 +4,7 @@ Pooja Manas Anikode Ganapathy – G01348092
 Raj Ganesh Kumara Dev - G01338310
 
 
-AWS URL of homepage: http://35.231.191.171:8080/SWE645HW2/studentSurvey.html
+URL of homepage: http://35.231.191.171:8080/SWE645HW2/studentSurvey.html
 
 Please see the Setup Instructions for project installation steps!
 
@@ -14,3 +14,43 @@ Docker/Dockerhub
 Jenkins on an AWS EC2 host running Ubuntu 20.02
 Rancher on an AWS EC2 host running Ubuntu 20.02
 GKE Cluster on Google Cloud
+
+Links to videos:
+Project Demo and Overview: https://youtu.be/N_EjmmkSHWs
+GCP Cluster Setup: https://youtu.be/7XdBeH8C3G0
+EC2 Instance Setup: https://youtu.be/Lo8w7SuTTak
+Rancher Setup:
+Jenkins Setup:
+
+Lessons learned:
+1. Problem: Every time the EC2 instance shuts off, the Public IPv4 DNS address would be reset with a new value.  Kubernetes config file references the DNS address, and once that changes, the config file becomes invalid.
+Solution: Associate an Elastic IP address with the EC2 instance within AWS, which is like a proxy ip address which stays consistent no matter when the EC2 instance shuts off.  Then create a config file based off of the Elastic IP address DNS name.
+
+2.Problem: The Jenkins application creates and uses a new user named 'jenkins' in order to perform any actions on the host.  Does not have many permissions to access other directories.Solution:  From Jenkins configuration, the working directory of the jenkins user is var/lib/jenkins/workspace or something similar. 
+Solution: I created .kube folder within it and created a config file.  I copy pasted the contents of the kubernetes config file into that file and referenced it in the Jenkins file.
+
+3. Problem: War file was corrupted.  When the jar -cvf... command creates the war file, it can ONLY include a directory with the necessary files, ie., the outer directory of WEB-INF.  Any other files included in the directory specified in the command will corrupt the war file.
+Solution: modify the jar -cvf command to specify only the correct directory to build the war file as shown in the Jenkinsfile
+
+4. Problem: After setting an image on the cluster using the kubectl set image command, nothing would happen.
+Solution: The cluster needs to destroy the current pods with the old images and create new pods with the new image.  I added a kubectl rolling restart deployment/swe645hw2 command to the Jenkinsfile and it worked.
+
+5. Problem: When creating the Jenkins pipeline, we were unable to get the github push webhooks working.
+Solution: Turns out, we needed to uncheck the "Lightweight build" default checkbox at the bottom of the pipeline configuration page
+
+6. Problem: When writing the Jenkinsfile, we were unable to have a plaintext password in the Jenkinsfile when logging into dockerhub.
+Solution: We had to create an environment variable in the Manage Jenkins -> Global settings page called DOCKERHUB_PASS, and pass that into the login command
+
+7. Problem: When attempting to run the Jenkinsfile, I got a "permission denied" on a docker command.
+Solution: I needed to add the jenkins user to the docker group in the Jenkins host.  Requires a Reboot of the instance for the user group changes to take effect. (sudo usermod -a -G docker jenkins)
+
+8. Problem: When attempting to provision a cluster on an EC2 instance using Rancher, I received an error.  This issue thread details a very similar method, along with a potential solution that I did not try: https://github.com/rancher/rancher/issues/21926#issuecomment-517620288
+
+9. Problem: When attempting to create an IAM service account user in AWS, I received an error.  Learner's Lab accounts are not allowed to create that type of service account
+
+References:
+https://www.devopsschool.com/blog/how-to-build-when-a-change-is-pushed-to-github-in-jenkins/
+https://aws.amazon.com/premiumsupport/knowledge-center/ec2-associate-static-public-ip/
+https://stackoverflow.com/questions/46266006/how-do-i-redeploy-everything-in-kubernetes-after-updating-a-dockerfile
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html
+https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances
