@@ -19,8 +19,8 @@ Links to videos:
 Project Demo and Overview: https://youtu.be/N_EjmmkSHWs
 GCP Cluster Setup: https://youtu.be/7XdBeH8C3G0
 EC2 Instance Setup: https://youtu.be/Lo8w7SuTTak
-Rancher Setup:
-Jenkins Setup:
+Rancher Setup: https://youtu.be/HaGUKaRkAMg
+Jenkins Setup: https://youtu.be/EVeWdS8rp6E
 
 Lessons learned:
 1. Problem: Every time the EC2 instance shuts off, the Public IPv4 DNS address would be reset with a new value.  Kubernetes config file references the DNS address, and once that changes, the config file becomes invalid.
